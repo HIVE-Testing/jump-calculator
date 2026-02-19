@@ -99,7 +99,7 @@ buttons.forEach(button => {
         
         // Add jump effect to equals button only
         if (value === '=') {
-            // Add the jumping animation class
+            // Apply the jumping animation class
             display.classList.add('jumping');
             
             // Remove the class after animation completes
@@ -107,6 +107,7 @@ buttons.forEach(button => {
                 display.classList.remove('jumping');
             }, 500);
             
+            // Perform calculation after animation starts
             calculate();
         } else if (value === 'C') {
             clear();
@@ -126,15 +127,18 @@ buttons.forEach(button => {
 document.addEventListener('keydown', event => {
     const key = event.key;
     
-    // Add jump effect when pressing '=' key
-    if (key === '=') {
-        // Add the jumping animation class
+    // Add jump effect when pressing '=' or 'Enter' key
+    if (key === '=' || key === 'Enter') {
+        // Apply the jumping animation class
         display.classList.add('jumping');
         
         // Remove the class after animation completes
         setTimeout(() => {
             display.classList.remove('jumping');
         }, 500);
+        
+        // Perform calculation after animation starts
+        calculate();
     }
     
     // Handle other keys
@@ -144,8 +148,6 @@ document.addEventListener('keydown', event => {
         appendDecimal();
     } else if (['+', '-', '*', '/'].includes(key)) {
         chooseOperation(key);
-    } else if (key === 'Enter' || key === '=') {
-        calculate();
     } else if (key === 'Escape') {
         clear();
     }
