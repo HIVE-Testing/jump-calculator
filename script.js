@@ -92,6 +92,19 @@ function appendDecimal() {
     updateDisplay();
 }
 
+// Jumpscare effect function
+function triggerJumpscare() {
+    // Create a scare element that covers the whole screen
+    const scareElement = document.createElement('div');
+    scareElement.className = 'scare';
+    document.body.appendChild(scareElement);
+    
+    // Remove the scare element after animation completes
+    setTimeout(() => {
+        document.body.removeChild(scareElement);
+    }, 300);
+}
+
 // Handle button clicks
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -99,7 +112,10 @@ buttons.forEach(button => {
         
         // Add jump effect to equals button only
         if (value === '=') {
-            // Apply the jumping animation class
+            // Trigger the jumpscare effect
+            triggerJumpscare();
+            
+            // Apply the jumping animation class to calculator
             display.classList.add('jumping');
             
             // Remove the class after animation completes
@@ -107,7 +123,7 @@ buttons.forEach(button => {
                 display.classList.remove('jumping');
             }, 500);
             
-            // Perform calculation after animation starts
+            // Perform calculation after animations start
             calculate();
         } else if (value === 'C') {
             clear();
@@ -129,7 +145,10 @@ document.addEventListener('keydown', event => {
     
     // Add jump effect when pressing '=' or 'Enter' key
     if (key === '=' || key === 'Enter') {
-        // Apply the jumping animation class
+        // Trigger the jumpscare effect
+        triggerJumpscare();
+        
+        // Apply the jumping animation class to calculator
         display.classList.add('jumping');
         
         // Remove the class after animation completes
@@ -137,7 +156,7 @@ document.addEventListener('keydown', event => {
             display.classList.remove('jumping');
         }, 500);
         
-        // Perform calculation after animation starts
+        // Perform calculation after animations start
         calculate();
     }
     
